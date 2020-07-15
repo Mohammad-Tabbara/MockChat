@@ -1,5 +1,6 @@
 package com.mohammad.di
 
+import android.content.Context
 import com.mohammad.domain.IContentManager
 import com.mohammad.domain.ILocalDatabase
 import com.mohammad.framework.ContentManager
@@ -13,10 +14,10 @@ class AppModule {
     
     @Singleton
     @Provides
-    fun provideContentManager(): IContentManager = ContentManager()
+    fun provideContentManager(localDatabase: ILocalDatabase): IContentManager = ContentManager(localDatabase)
 
     @Singleton
     @Provides
-    fun provideLocalDatabase(): ILocalDatabase = LocalDatabase()
+    fun provideLocalDatabase(context: Context): ILocalDatabase = LocalDatabase.newInstance(context)
 
 }

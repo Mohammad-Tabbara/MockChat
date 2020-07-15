@@ -1,5 +1,7 @@
 package com.mohammad.domain
 
-interface IContentManager {
+import com.mohammad.framework.db.model.Contact
 
+interface IContentManager {
+    suspend fun fetchContacts(): List<Contact>
 }
