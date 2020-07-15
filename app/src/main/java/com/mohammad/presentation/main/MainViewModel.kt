@@ -1,8 +1,8 @@
 package com.mohammad.presentation.main
 
-import androidx.lifecycle.ViewModel
+import com.mohammad.presentation._common.BaseViewModel
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor() : ViewModel(){
+class MainViewModel @Inject constructor() : BaseViewModel(){
 
 }

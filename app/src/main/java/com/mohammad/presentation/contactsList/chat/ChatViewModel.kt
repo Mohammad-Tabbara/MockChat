@@ -1,8 +1,8 @@
 package com.mohammad.presentation.contactsList.chat
 
-import androidx.lifecycle.ViewModel
+import com.mohammad.presentation._common.BaseViewModel
 import javax.inject.Inject
 
-class ChatViewModel @Inject constructor() : ViewModel() {
+class ChatViewModel @Inject constructor() : BaseViewModel() {
 
 }
