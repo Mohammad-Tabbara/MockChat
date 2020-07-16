@@ -61,15 +61,17 @@ class ChatFragment : BaseFragment() {
         viewModel.getUserChatResultLiveData.observe(viewLifecycleOwner, Observer { chatResource ->
             when (chatResource.state) {
                 ResourceState.LOADING -> {
-
+                    showLoading()
                 }
                 ResourceState.SUCCESS -> {
+                    endLoading()
                     chatResource.data?.let { messages ->
                         initChatList(messages)
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    endLoading()
+                    // TODO: Handle Exception
                 }
             }
         })
@@ -78,19 +80,26 @@ class ChatFragment : BaseFragment() {
     private fun observeAddMessage() {
         viewModel.addMessageResultLiveData.observe(viewLifecycleOwner, Observer { chatResource ->
             when (chatResource.state) {
-                ResourceState.LOADING -> {
-
-                }
                 ResourceState.SUCCESS -> {
                     chatResource.data?.let { messages ->
                         initChatList(messages)
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    // TODO: Handle Exception
                 }
             }
         })
+    }
+
+    private fun showLoading() {
+        chatList.visibility = View.GONE
+        loading.visibility = View.VISIBLE
+    }
+
+    private fun endLoading() {
+        chatList.visibility = View.VISIBLE
+        loading.visibility = View.GONE
     }
 
     private fun initChatList(messages: List<Message>) {

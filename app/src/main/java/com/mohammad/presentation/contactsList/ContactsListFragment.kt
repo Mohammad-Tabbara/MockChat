@@ -37,18 +37,30 @@ class ContactsListFragment : BaseFragment() {
         viewModel.fetchContactsResultLiveData.observe(viewLifecycleOwner, Observer { contactsResource ->
             when(contactsResource.state) {
                 ResourceState.LOADING -> {
-
+                    showLoading()
                 }
                 ResourceState.SUCCESS -> {
+                    endLoading()
                     contactsResource.data?.let { contacts ->
                         initContactsList(contacts)
                     }
                 }
                 ResourceState.ERROR -> {
-
+                    endLoading()
+                    // TODO: Handle Exception
                 }
             }
         })
+    }
+
+    private fun showLoading() {
+        contactsList.visibility = View.GONE
+        loading.visibility = View.VISIBLE
+    }
+
+    private fun endLoading() {
+        contactsList.visibility = View.VISIBLE
+        loading.visibility = View.GONE
     }
 
     private fun initContactsList(contacts: List<Contact>) {
