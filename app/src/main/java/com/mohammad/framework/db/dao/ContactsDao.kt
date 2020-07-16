@@ -10,6 +10,7 @@ interface ContactsDao {
     @Insert
     fun addContacts(contacts: List<Contact>)
 
+    // TODO: Reform Query to contain the last message
     @Query("SELECT * FROM Contact")
     fun getContacts() : List<Contact>
 }
