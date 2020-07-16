@@ -20,9 +20,16 @@ class ContactsListFragment : BaseFragment() {
     @Inject
     lateinit var viewModel: ContactsListViewModel
 
+    override val fragmentTitle: String
+        get() = "Contacts"
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initObservers()
         viewModel.fetchContactsAsync()
+    }
+
+    private fun initObservers() {
         observeContactsList()
     }
 
@@ -48,7 +55,7 @@ class ContactsListFragment : BaseFragment() {
         contactsList.apply {
             adapter = ContactsAdapter(contacts) { selectedContact ->
                 parentFragmentManager.inTransaction {
-                    replace(R.id.mainContainer, ChatFragment.newInstance(selectedContact.id))
+                    replace(R.id.mainContainer, ChatFragment.newInstance(selectedContact.id, selectedContact.name))
                 }
             }
             layoutManager = LinearLayoutManager(context)
