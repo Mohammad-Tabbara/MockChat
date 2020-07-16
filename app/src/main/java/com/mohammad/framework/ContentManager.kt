@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class ContentManager @Inject constructor(private val localDatabase: ILocalDatabase, private val contactsProvider: IContactsProvider): IContentManager {
     override suspend fun fetchContacts(): List<Contact> {
-        // TODO: Create Random generated Contacts
         val contacts = localDatabase.getContactsDao().getContacts()
         return if(contacts.isNotEmpty()) {
             contacts
