@@ -1,9 +1,15 @@
 package com.mohammad.presentation.contactsList.chat
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mohammad.R
+import com.mohammad.framework.db.model.Message
 import com.mohammad.presentation._common.BaseFragment
+import com.mohammad.presentation._common.models.ResourceState
+import kotlinx.android.synthetic.main.fragment_chat.*
+import java.util.*
 import javax.inject.Inject
 
 
@@ -25,6 +31,72 @@ class ChatFragment : BaseFragment() {
         arguments?.let {
             contactId = it.getString(CONTACT_ID)
             contactName = it.getString(CONTACT_NAME)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
+        viewModel.getUserChatAsync(contactId ?: "")
+        sendButton.setOnClickListener {
+            if(messageEditText.text.isNotEmpty()) {
+                viewModel.addMessageAsync(
+                    Message(
+                        contactId ?: "",
+                        messageEditText.text.toString(),
+                        true,
+                        Date().time
+                    )
+                )
+            }
+        }
+    }
+
+    private fun initObservers() {
+        observeChat()
+        observeAddMessage()
+    }
+
+    private fun observeChat() {
+        viewModel.getUserChatResultLiveData.observe(viewLifecycleOwner, Observer { chatResource ->
+            when (chatResource.state) {
+                ResourceState.LOADING -> {
+
+                }
+                ResourceState.SUCCESS -> {
+                    chatResource.data?.let { messages ->
+                        initChatList(messages)
+                    }
+                }
+                ResourceState.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+    private fun observeAddMessage() {
+        viewModel.addMessageResultLiveData.observe(viewLifecycleOwner, Observer { chatResource ->
+            when (chatResource.state) {
+                ResourceState.LOADING -> {
+
+                }
+                ResourceState.SUCCESS -> {
+                    chatResource.data?.let { messages ->
+                        initChatList(messages)
+                    }
+                }
+                ResourceState.ERROR -> {
+
+                }
+            }
+        })
+    }
+
+    private fun initChatList(messages: List<Message>) {
+        chatList.apply {
+            adapter = ChatAdapter(messages)
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
