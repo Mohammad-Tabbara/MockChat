@@ -38,12 +38,12 @@ class ChatViewModel @Inject constructor(val interactor: ChatContract.Interactor)
     }
 
     private suspend fun addMessage(message: Message) {
-        getUserChatResult.setLoading()
+        addMessageResult.setLoading()
         try {
             interactor.addMessage(message)
-            getUserChatResult.setSuccess(interactor.fetchMessages(message.userId))
+            addMessageResult.setSuccess(interactor.fetchMessages(message.userId))
         } catch (exception: Exception) {
-            getUserChatResult.setError(exception = exception)
+            addMessageResult.setError(exception = exception)
         }
     }
 

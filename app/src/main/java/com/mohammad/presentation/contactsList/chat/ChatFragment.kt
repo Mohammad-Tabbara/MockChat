@@ -107,6 +107,7 @@ class ChatFragment : BaseFragment() {
             adapter = ChatAdapter(messages)
             layoutManager = LinearLayoutManager(context)
         }
+        chatList.scrollToPosition(messages.size - 1)
     }
 
     companion object {
