@@ -9,7 +9,7 @@ class ContactsProvider: IContactsProvider {
     override suspend fun generateContacts(): List<Contact> {
         val contacts = mutableListOf<Contact>()
         for(i in 0 until 200) {
-            val contact = Contact(i.toString(), UUID.randomUUID().toString(), randomImage())
+            val contact = Contact(i.toString(), "Person ${i + 1}", randomImage())
             contacts.add(contact)
         }
         return contacts
