@@ -1,7 +1,7 @@
 package com.mohammad.framework
 
 import com.mohammad.domain.IContactsProvider
-import com.mohammad.framework.db.model.Contact
+import com.mohammad.framework.db.entity.Contact
 import java.util.*
 import kotlin.math.abs
 
@@ -9,7 +9,11 @@ class ContactsProvider: IContactsProvider {
     override suspend fun generateContacts(): List<Contact> {
         val contacts = mutableListOf<Contact>()
         for(i in 0 until 200) {
-            val contact = Contact(i.toString(), "Person ${i + 1}", randomImage())
+            val contact = Contact(
+                i.toString(),
+                "Person ${i + 1}",
+                randomImage()
+            )
             contacts.add(contact)
         }
         return contacts

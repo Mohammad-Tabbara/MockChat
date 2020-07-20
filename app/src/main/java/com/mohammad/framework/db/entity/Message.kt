@@ -1,4 +1,4 @@
-package com.mohammad.framework.db.model
+package com.mohammad.framework.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

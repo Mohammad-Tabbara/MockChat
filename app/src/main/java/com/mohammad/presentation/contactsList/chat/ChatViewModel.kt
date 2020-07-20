@@ -2,8 +2,7 @@ package com.mohammad.presentation.contactsList.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mohammad.framework.db.model.Contact
-import com.mohammad.framework.db.model.Message
+import com.mohammad.framework.db.entity.Message
 import com.mohammad.presentation._common.BaseViewModel
 import com.mohammad.presentation._common.extensions.setError
 import com.mohammad.presentation._common.extensions.setLoading

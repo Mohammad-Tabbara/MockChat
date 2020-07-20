@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mohammad.R
-import com.mohammad.framework.db.model.Message
+import com.mohammad.framework.db.entity.Message
 import com.mohammad.presentation._common.BaseFragment
 import com.mohammad.presentation._common.models.ResourceState
 import kotlinx.android.synthetic.main.fragment_chat.*

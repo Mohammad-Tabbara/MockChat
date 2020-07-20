@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mohammad.R
-import com.mohammad.framework.db.model.Contact
+import com.mohammad.framework.db.model.DisplayContact
 import com.mohammad.presentation._common.BaseFragment
 import com.mohammad.presentation._common.extensions.inTransaction
 import com.mohammad.presentation._common.models.ResourceState
@@ -63,7 +63,7 @@ class ContactsListFragment : BaseFragment() {
         loading.visibility = View.GONE
     }
 
-    private fun initContactsList(contacts: List<Contact>) {
+    private fun initContactsList(contacts: List<DisplayContact>) {
         contactsList.apply {
             adapter = ContactsAdapter(contacts) { selectedContact ->
                 parentFragmentManager.inTransaction {

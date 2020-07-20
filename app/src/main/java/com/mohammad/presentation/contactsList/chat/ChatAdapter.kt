@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mohammad.R
-import com.mohammad.framework.db.model.Message
+import com.mohammad.framework.db.entity.Message
 import kotlinx.android.synthetic.main.sent_chat_message_layout.view.*
 
 class ChatAdapter(private val messages: List<Message>) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {

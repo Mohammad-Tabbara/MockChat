@@ -1,6 +1,6 @@
 package com.mohammad.presentation.contactsList.chat
 
-import com.mohammad.framework.db.model.Message
+import com.mohammad.framework.db.entity.Message
 
 interface ChatContract {
     interface Interactor {

@@ -8,8 +8,8 @@ import com.mohammad.Constants
 import com.mohammad.domain.ILocalDatabase
 import com.mohammad.framework.db.dao.ChatDao
 import com.mohammad.framework.db.dao.ContactsDao
-import com.mohammad.framework.db.model.Contact
-import com.mohammad.framework.db.model.Message
+import com.mohammad.framework.db.entity.Contact
+import com.mohammad.framework.db.entity.Message
 
 
 @Database(entities = [Contact::class, Message::class], version = 1, exportSchema = false)
