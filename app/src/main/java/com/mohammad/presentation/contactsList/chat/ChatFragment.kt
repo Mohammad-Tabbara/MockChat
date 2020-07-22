@@ -44,8 +44,7 @@ class ChatFragment : BaseFragment() {
                     Message(
                         contactId ?: "",
                         messageEditText.text.toString(),
-                        true,
-                        Date().time
+                        true
                     )
                 )
             }

@@ -13,6 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import java.util.*
 import javax.inject.Inject
 
 class ChatViewModel @Inject constructor(val interactor: ChatContract.Interactor) : BaseViewModel() {
@@ -37,6 +38,7 @@ class ChatViewModel @Inject constructor(val interactor: ChatContract.Interactor)
     }
 
     private suspend fun addMessage(message: Message) {
+        message.createdAt = Date().time
         addMessageResult.setLoading()
         try {
             interactor.addMessage(message)
