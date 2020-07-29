@@ -10,9 +10,7 @@ import javax.inject.Inject
 
 class ContentManager @Inject constructor(private val localDatabase: ILocalDatabase, private val contactsProvider: IContactsProvider): IContentManager {
     override suspend fun fetchContacts(): List<DisplayContact> {
-        val contacts = mutableListOf<DisplayContact>()
-        contacts.addAll(localDatabase.getContactsDao().getMessagedContacts())
-        contacts.addAll(localDatabase.getContactsDao().getFreshContacts())
+        val contacts = localDatabase.getContactsDao().getContacts()
         return if(contacts.isNotEmpty()) {
             contacts
         } else {
